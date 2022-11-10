@@ -1,23 +1,42 @@
-import logo from './logo.svg';
 import './App.css';
+import Form from './components/Form';
+import Note from './components/Note'
+
+
+import { useState } from 'react';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+
 
 function App() {
+
+  const [notes, setNotes] = useState([]);
+
+  const addNote = (noteText) => {
+    const newNote = {
+      text: noteText,
+      date: new Date()
+    };
+    //console.log('newNote' ,newNote);
+    setNotes([...notes, newNote]);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+
+      <Container className='d-flex flex-column pt-5 align-items-center'>
+        <Form onSubmit={addNote} />
+        <div className='notes-container'>
+          {notes.map((note, index) => {
+            return <Note
+              key={index}
+              text={note.text}
+            />
+          })}
+        </div>
+      </Container>
+
     </div>
   );
 }
