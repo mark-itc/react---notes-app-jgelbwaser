@@ -13,12 +13,19 @@ function App() {
 
   const [notes, setNotes] = useState([]);
 
+  const deleteNote = (noteId) => {
+      const tempArray = [...notes];
+      tempArray.splice(noteId,1);
+     setNotes(tempArray);
+   
+  }
+  
   const addNote = (noteText) => {
     const newNote = {
       text: noteText,
       date: new Date()
     };
-    //console.log('newNote' ,newNote);
+    console.log('newNote' ,newNote);
     setNotes([...notes, newNote]);
   }
 
@@ -29,10 +36,15 @@ function App() {
         <Form onSubmit={addNote} />
         <div className='notes-container'>
           {notes.map((note, index) => {
-            return <Note
+            return (
+            <Note
               key={index}
+              id= {index}
               text={note.text}
-            />
+              date ={note.date}
+              onDelete = {deleteNote}
+              
+            />)
           })}
         </div>
       </Container>

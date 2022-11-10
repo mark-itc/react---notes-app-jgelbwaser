@@ -3,16 +3,16 @@ import Button from 'react-bootstrap/Button';
 
 function Form({ onSubmit }) {
 
-    //const noteText = "Example note";
-
     const [inputValue, setInputValue] = useState('');
 
 
     const handleSubmit = (e) => {
         
         e.preventDefault();
-        inputValue && onSubmit(inputValue);
-        setInputValue('');
+        if (inputValue) {
+            onSubmit(inputValue);
+            setInputValue('');
+        }
     }
 
     const onInputChange = (e) => {
