@@ -1,3 +1,6 @@
+import { useState } from 'react';
+
+import Modal from 'react-bootstrap/Modal';
 import Card from 'react-bootstrap/Card';
 import { format } from 'date-fns';
 import './Note.css';
@@ -6,17 +9,22 @@ import './Note.css';
 function Note(props) {
 
   const { title, text, date, id, onDelete } = props;
+
+  
+    const [show, setShow] = useState(false);
+  
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
   
   const handleDelete = (e) => {
-    console.log('delete clicked '+ id + ' '+ text);
     const deleteConfirmed = window.confirm("Are you sure you want to delete your note?");
     if (deleteConfirmed) {onDelete(id)} 
   }
 
 
   return (
-
-    <Card className='card-note m-3' >
+    <>
+    <Card className='card-note m-3'  onClick={handleShow}>
       <Card.Header  className="card-header">
       <span className='card-date'>
       {format(date,"MMM do h:mm a")}
@@ -31,27 +39,20 @@ function Note(props) {
         </Card.Text>
       </Card.Body>
     </Card>
+
+    <Modal show={show} centered onHide={handleClose}>
+        <Modal.Header closeButton>
+        {format(date,"MMM do h:mm a")}       
+        </Modal.Header>        
+        <Modal.Body>
+        <Modal.Title>{title}</Modal.Title>
+          {text}
+          </Modal.Body>
+      </Modal>
+    </>
   )
 
 }
 
 export default Note;
 
-  // return (
-  //   <div className='card-note'>
-  //     <div className='card-header'>
-  //       <span className='card-date'>
-  //         {format(date, "MMM do h:mm a")}ggg
-  //       </span>
-  //       <span className='card-close-button'>&#10006;</span>
-  //     </div>
-  //     <div className='card-body'>
-  //       <div className='card-title'>
-          
-  //       </div>
-  //       <div className='card-text'>
-  //         {text}
-  //       </div>
-  //     </div>
-  //   </div>
-  // )
