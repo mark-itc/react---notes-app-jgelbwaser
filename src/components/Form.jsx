@@ -1,32 +1,44 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import './Form.css'
 
 function Form({ onSubmit }) {
 
-    const [inputValue, setInputValue] = useState('');
+    const [inputTxtValue, setTxtInputValue] = useState('');
+    const [inputTitleValue, setTitleInputValue] = useState('');
 
 
     const handleSubmit = (e) => {
         
         e.preventDefault();
-        if (inputValue) {
-            onSubmit(inputValue);
-            setInputValue('');
+        if (inputTxtValue) {
+            onSubmit({text:inputTxtValue, title:inputTitleValue});
+            setTxtInputValue('');
+            setTitleInputValue('')
         }
     }
 
-    const onInputChange = (e) => {
-        setInputValue(e.currentTarget.value);
+    const onTxtInputChange = (e) => {
+        setTxtInputValue(e.currentTarget.value);
+    }
+
+    const onTitleInputChange = (e) => {
+        setTitleInputValue(e.currentTarget.value);
 
     }
 
     return (
         <form className="form" >
-
+            <input type="text"
+                value ={inputTitleValue}
+                className='title-input input'
+                placeholder = 'Title'
+                onInput = {onTitleInputChange}           
+            />
             <textarea
-                value ={inputValue}
-                className='note-input'
-                onInput={onInputChange}
+                value ={inputTxtValue}
+                className='text-input input'
+                onInput={onTxtInputChange}
                 placeholder="your note"
                 name="note-input" rows="4" cols="50">
             </textarea>

@@ -7,15 +7,15 @@
 .App {
   min-height: 100vh;
 }
-
+/* 
 .note-input {
   margin-bottom: 1rem;
 }
 
 .form {
-  /* margin: 3rem 0; */
+  
   margin-bottom: 3rem;
-  /* border: 1px solid grey; */
+  
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -24,7 +24,7 @@
   border-radius: 5px;
   -webkit-box-shadow: 0px 2px 5px 5px rgba(181,181,181,0.2); 
   box-shadow: 0px 2px 5px 5px rgba(181,181,181,0.2);
-}
+} */
 
 .notes-container {
   width: 100%;

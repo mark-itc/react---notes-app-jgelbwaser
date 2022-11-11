@@ -20,12 +20,12 @@ function App() {
    
   }
   
-  const addNote = (noteText) => {
+  const addNote = ({text, title}) => {
     const newNote = {
-      text: noteText,
+      text: text,
+      title: title,
       date: new Date()
     };
-    console.log('newNote' ,newNote);
     setNotes([...notes, newNote]);
   }
 
@@ -40,6 +40,7 @@ function App() {
             <Note
               key={index}
               id= {index}
+              title = {note.title}
               text={note.text}
               date ={note.date}
               onDelete = {deleteNote}
