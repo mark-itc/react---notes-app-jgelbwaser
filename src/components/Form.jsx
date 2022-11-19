@@ -2,47 +2,56 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import './Form.css'
 
-function Form({ onSubmit }) {
+function Form({ onSubmit, noteToEdit, id }) {
 
-    const [inputTxtValue, setTxtInputValue] = useState('');
-    const [inputTitleValue, setTitleInputValue] = useState('');
+    const [inputTitleValue, setTitleInputValue] = useState(noteToEdit ? noteToEdit.title : '');
+    const [inputTxtValue, setTxtInputValue] = useState(noteToEdit ? noteToEdit.text : '');
 
 
     const handleSubmit = (e) => {
-        
+
         e.preventDefault();
         if (inputTxtValue) {
-            onSubmit({text:inputTxtValue, title:inputTitleValue});
+            onSubmit({ text: inputTxtValue, title: inputTitleValue, id:id });
             setTxtInputValue('');
             setTitleInputValue('')
         }
     }
 
     const onTxtInputChange = (e) => {
+        e.target.style.height = 'inherit';
+        e.target.style.height = `${e.target.scrollHeight}px`;
         setTxtInputValue(e.currentTarget.value);
     }
 
     const onTitleInputChange = (e) => {
         setTitleInputValue(e.currentTarget.value);
-
     }
+
+  
+
 
     return (
         <form className="form" >
             <input type="text"
-                value ={inputTitleValue}
+                value={inputTitleValue}
                 className='title-input input'
-                placeholder = 'Title'
-                onInput = {onTitleInputChange}           
+                placeholder='Title'
+                onInput={onTitleInputChange}
             />
             <textarea
-                value ={inputTxtValue}
+                value={inputTxtValue}
                 className='text-input input'
                 onInput={onTxtInputChange}
                 placeholder="your note"
-                name="note-input" rows="4" cols="50">
+                name="note-input"
+                rows={4}
+                cols="50"
+                required>
             </textarea>
-            <Button type='submit' onClick={handleSubmit}>Add note</Button>
+            <Button type='submit' onClick={handleSubmit}>
+                {noteToEdit ? 'Update Note' : 'Add note'}
+            </Button>
         </form>
     )
 }

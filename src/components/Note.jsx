@@ -1,54 +1,46 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
-import Modal from 'react-bootstrap/Modal';
+// import Modal from 'react-bootstrap/Modal';
 import Card from 'react-bootstrap/Card';
 import { format } from 'date-fns';
 import './Note.css';
 
+// import Form from './Form';
+
 
 function Note(props) {
 
-  const { title, text, date, id, onDelete } = props;
+  const { title, text, created, updated, id, onDelete, onEdit } = props;
 
-  
-    const [show, setShow] = useState(false);
-  
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-  
   const handleDelete = (e) => {
-    const deleteConfirmed = window.confirm("Are you sure you want to delete your note?");
-    if (deleteConfirmed) {onDelete(id)} 
+    e.stopPropagation()
+    onDelete(id)
   }
 
-
+  console.log('created', created);
   return (
     <>
-    <Card className='card-note m-3'  onClick={handleShow}>
+    <Card className='card-note m-3'  onClick={()=>onEdit(id)}>
       <Card.Header  className="card-header">
-      <span className='card-date'>
-      {format(date,"MMM do h:mm a")}
-      </span>
+      <Card.Title mb-0 >{title}</Card.Title>
       <span className='card-delete-button' onClick={handleDelete}>&#10006;</span>
-
+     
       </Card.Header>
       <Card.Body >
-        <Card.Title>{title}</Card.Title>
+        
         <Card.Text>
-          {text}
+          <div className='mb-3'>{text}</div>
+          <div className='card-date'> 
+          <div>Created: {format(created,"MMM do h:mm a")}
+          </div>
+          <div>
+
+          {updated && 'Updated: ' + format(updated,"MMM do h:mm a")}
+          </div>
+          </div>
         </Card.Text>
       </Card.Body>
     </Card>
-
-    <Modal show={show} centered onHide={handleClose}>
-        <Modal.Header closeButton>
-        {format(date,"MMM do h:mm a")}       
-        </Modal.Header>        
-        <Modal.Body>
-        <Modal.Title>{title}</Modal.Title>
-          {text}
-          </Modal.Body>
-      </Modal>
     </>
   )
 

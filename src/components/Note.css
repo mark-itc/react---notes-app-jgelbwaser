@@ -19,3 +19,12 @@
   cursor: pointer; 
 }
 
+
+.card-title {
+  margin-bottom: 0;
+}
+
+.card-date {
+  font-size: .8rem;
+  color: rgb(61, 61, 61);
+}
