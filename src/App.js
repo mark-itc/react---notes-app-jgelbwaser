@@ -41,7 +41,6 @@ function App() {
     const newNoteArray = notes ? [...notes] : [];
     newNoteArray[newData.id] = newNote
     localForage.setItem('notes', newNoteArray);
-    console.log('notes', newNoteArray);
     setNotes(newNoteArray);
     
     setShowModal(false);
@@ -61,7 +60,7 @@ function App() {
     <div className='App'>
 
       <Container className='d-flex flex-column pt-5 align-items-center'>
-
+        <h1 className='mb-5 fw-bold' >My Notes:</h1>
         <Form onSubmit={saveNote} id={notes && notes.length}/>
         <div className='notes-container mt-5'>
           {notes && notes.map((note, index) => {
