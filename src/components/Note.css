@@ -1,27 +1,41 @@
-.card-note {
-    width: 15rem;
-    margin: 10px;
-    border: 1px solid blue;
-  }
-  
+.card-note.card {
+  width: 15rem;
+  margin: 10px;
+  /* border: 1px solid blue; */
+  background-color: #fbeda0;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  rotate: -5deg;
+  border-radius: 0;
+}
+
+.card-note.card:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;;
+}
 
 
+.card-text {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  flex-grow: 1;
+}
 
 .card-header {
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
 
 }
 
 .card-delete-button {
   font-size: 1.5rem;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 
 .card-title {
   margin-bottom: 0;
+  font-weight: 700;
 }
 
 .card-date {

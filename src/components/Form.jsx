@@ -32,10 +32,10 @@ function Form({ onSubmit, noteToEdit, id }) {
 
 
     return (
-        <form className="form" >
+        <form className="form shadow" >
             <input type="text"
                 value={inputTitleValue}
-                className='title-input input'
+                className='title-input h5 input'
                 placeholder='Title'
                 onInput={onTitleInputChange}
             />

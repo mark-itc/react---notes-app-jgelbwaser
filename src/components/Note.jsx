@@ -17,19 +17,18 @@ function Note(props) {
     onDelete(id)
   }
 
-  console.log('created', created);
+  
   return (
     <>
     <Card className='card-note m-3'  onClick={()=>onEdit(id)}>
       <Card.Header  className="card-header">
-      <Card.Title mb-0 >{title}</Card.Title>
+      <Card.Title className='mb-0 fw-bold' >{title}</Card.Title>
       <span className='card-delete-button' onClick={handleDelete}>&#10006;</span>
      
       </Card.Header>
-      <Card.Body >
+      <Card.Body className='d-flex flex-column'>
         
-        <Card.Text>
-          <div className='mb-3'>{text}</div>
+        <Card.Text className='mb-3 card-text'>{text}</Card.Text>
           <div className='card-date'> 
           <div>Created: {format(created,"MMM do h:mm a")}
           </div>
@@ -38,7 +37,7 @@ function Note(props) {
           {updated && 'Updated: ' + format(updated,"MMM do h:mm a")}
           </div>
           </div>
-        </Card.Text>
+        
       </Card.Body>
     </Card>
     </>
