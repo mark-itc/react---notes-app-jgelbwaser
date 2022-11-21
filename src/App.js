@@ -35,10 +35,10 @@ function App() {
   }
 
   const saveNote = (newData) => {
-    const prevNote = notes[newData.id]? {...notes[newData.id]} : {};
+    const prevNote = notes && notes[newData.id]? {...notes[newData.id]} : {};
     const newNote = {...prevNote, ...newData}
     newNote.created ?  newNote.updated = new Date() :  newNote.created = new Date() 
-    const newNoteArray = [...notes];
+    const newNoteArray = notes ? [...notes] : [];
     newNoteArray[newData.id] = newNote
     localForage.setItem('notes', newNoteArray);
     console.log('notes', newNoteArray);
@@ -62,9 +62,9 @@ function App() {
 
       <Container className='d-flex flex-column pt-5 align-items-center'>
 
-        <Form onSubmit={saveNote} id={notes.length}/>
+        <Form onSubmit={saveNote} id={notes && notes.length}/>
         <div className='notes-container mt-5'>
-          {notes.map((note, index) => {
+          {notes && notes.map((note, index) => {
             return (
               <Note
                 key={index}
