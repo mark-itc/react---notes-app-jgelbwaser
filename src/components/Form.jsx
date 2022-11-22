@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef} from 'react';
 import Button from 'react-bootstrap/Button';
 import './Form.css'
 
@@ -6,7 +6,10 @@ function Form({ onSubmit, noteToEdit, id }) {
 
     const [inputTitleValue, setTitleInputValue] = useState(noteToEdit ? noteToEdit.title : '');
     const [inputTxtValue, setTxtInputValue] = useState(noteToEdit ? noteToEdit.text : '');
-
+    const NoteTxtArea  = useRef();
+    const heightContTxtArea = NoteTxtArea.current ? `${NoteTxtArea.current.scrollHeight}px` : '';
+    console.log(heightContTxtArea);
+    console.log(NoteTxtArea);
 
     const handleSubmit = (e) => {
 
@@ -40,6 +43,8 @@ function Form({ onSubmit, noteToEdit, id }) {
                 onInput={onTitleInputChange}
             />
             <textarea
+                ref= {NoteTxtArea}
+                style={{height: heightContTxtArea}}
                 value={inputTxtValue}
                 className='text-input input'
                 onInput={onTxtInputChange}
