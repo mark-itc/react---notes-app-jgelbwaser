@@ -8,8 +8,7 @@ function Form({ onSubmit, noteToEdit, id }) {
     const [inputTxtValue, setTxtInputValue] = useState(noteToEdit ? noteToEdit.text : '');
     const NoteTxtArea  = useRef();
     const heightContTxtArea = NoteTxtArea.current ? `${NoteTxtArea.current.scrollHeight}px` : '';
-    console.log(heightContTxtArea);
-    console.log(NoteTxtArea);
+
 
     const handleSubmit = (e) => {
 
